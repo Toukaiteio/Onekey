@@ -1,78 +1,15 @@
 <div align="center">
 
-![Onekey](https://socialify.git.ci/ikun0014/Onekey/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pulls=1&stargazers=1&theme=Auto)
-![GitHub Repo Size](https://img.shields.io/github/repo-size/ikun0014/Onekey?style=for-the-badge)
-[![GitHub Release (with filter)](https://img.shields.io/github/v/release/ikun0014/Onekey?style=for-the-badge)](https://github.com/ikun0014/Onekey/releases/latest)
-[![GitHub All Releases](https://img.shields.io/github/downloads/ikun0014/Onekey/total?style=for-the-badge&color=violet)](https://github.com/ikun0014/Onekey/releases)
-[![GitHub License](https://img.shields.io/github/license/ikun0014/Onekey?style=for-the-badge)](https://github.com/ikun0014/Onekey/blob/main/LICENSE)
+![Onekey](https://socialify.git.ci/Onekey-Project/Onekey/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pulls=1&stargazers=1&theme=Auto)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/Onekey-Project/Onekey?style=for-the-badge)
+[![GitHub Release (with filter)](https://img.shields.io/github/v/release/Onekey-Project/Onekey?style=for-the-badge)](https://github.com/Onekey-Project/Onekey/releases/latest)
+[![GitHub All Releases](https://img.shields.io/github/downloads/Onekey-Project/Onekey/total?style=for-the-badge&color=violet)](https://github.com/Onekey-Project/Onekey/releases)
+[![GitHub License](https://img.shields.io/github/license/Onekey-Project/Onekey?style=for-the-badge)](https://github.com/Onekey-Project/Onekey/blob/main/LICENSE)
 
 </div>
 
 # Onekey
 Steam收费游戏体验(无法享受官方的任何在线权益)  
-
-## 备注
-### 本项目中可能会出现以下优秀代码
-
-1. 三角形具有稳定性
-```python
-    if selected_repo:
-        log.info(f'选择清单仓库: {selected_repo}')
-        url = f'https://api.github.com/repos/{selected_repo}/branches/{app_id}'
-        try:
-            r = requests.get(url, verify=False)
-            if 'commit' in r.json():
-                branch = r.json()['name']
-                url = r.json()['commit']['commit']['tree']['url']
-                date = r.json()['commit']['commit']['author']['date']
-                r = requests.get(url,verify=False)
-                if 'tree' in r.json():
-                    stool_add([(app_id, 1, "None")])
-                    result_list = []
-                    with Pool(32) as pool:
-                        pool: ThreadPool
-                        for i in r.json()['tree']:
-                            result_list.append(pool.apply_async(get_manifest, (branch, i['path'], get_steam_path(), app_id)))
-                        try:
-                            while pool._state == 'RUN':
-                                if all([result.ready() for result in result_list]):
-                                    break
-                                time.sleep(0.1)
-                        except KeyboardInterrupt:
-                            with lock:
-                                pool.terminate()
-                            raise
-                    if all([result.successful() for result in result_list]):
-                        log.info(f'清单最新更新时间:{date}')
-                        log.info(f'入库成功: {app_id}')
-                        log.info('重启steam生效')
-                        return True
-        except KeyboardInterrupt:
-            exit()
-        except requests.exceptions.RequestException as e:
-            log.error(f"An error occurred: {e}")
-    log.error(f'入库失败: {app_id}')
-    return False
-```
-
-2. 能多行写完那就坚决不一行
-```python
-    url_list = [f'https://github.moeyy.xyz/https://raw.githubusercontent.com/BlankTMing/ManifestAutoUpdate/{branch}/{path}',
-                f'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/BlankTMing/ManifestAutoUpdate/{branch}/{path}',
-                f'https://raw.staticdn.net/https://raw.githubusercontent.com/BlankTMing/ManifestAutoUpdate/{branch}/{path}',
-                f'https://github.moeyy.xyz/https://raw.githubusercontent.com/lls7890/Repository/{branch}/{path}',
-                f'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/lls7890/Repository/{branch}/{path}',
-                f'https://raw.staticdn.net/https://raw.githubusercontent.com/lls7890/Repository/{branch}/{path}',
-                f'https://github.moeyy.xyz/https://raw.githubusercontent.com/isKoi/Manifest-AutoUpdate/{branch}/{path}',
-                f'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/isKoi/Manifest-AutoUpdate/{branch}/{path}',
-                f'https://raw.staticdn.net/https://raw.githubusercontent.com/isKoi/Manifest-AutoUpdate/{branch}/{path}',
-                f'https://github.moeyy.xyz/https://raw.githubusercontent.com/qwq-xinkeng/awaqwqmain/{branch}/{path}',
-                f'https://raw.staticdn.net/https://raw.githubusercontent.com/qwq-xinkeng/awaqwqmain/{branch}/{path}',
-                f'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/qwq-xinkeng/awaqwqmain/{branch}/{path}',
-                f'https://github.moeyy.xyz/https://raw.githubusercontent.com/Onekey-Project/Manifest-AutoUpdate/{branch}/{path}',
-                f'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Onekey-Project/Manifest-AutoUpdate/{branch}/{path}',
-                f'https://raw.staticdn.net/https://raw.githubusercontent.com/Onekey-Project/Manifest-AutoUpdate/{branch}/{path}']
-```
 
 # 项目协议
 本项目基于 GPL 2.0 许可证发行，以下协议是对于 GPL 2.0 原协议的补充，如有冲突，以以下协议为准。
@@ -93,12 +30,12 @@ ikun0014+qq.com
 
 ## Star 趋势图
 
-[![Stargazers over time](https://starchart.cc/ikun0014/Onekey.svg)](https://starchart.cc/ikun0014/Onekey)
+[![Stargazers over time](https://starchart.cc/Onekey-Project/Onekey.svg)](https://starchart.cc/Onekey-Project/Onekey)
 
 ## 贡献者
 
-<a href="https://github.com/ikun0014/Onekey/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ikun0014/Onekey" />
+<a href="https://github.com/Onekey-Project/Onekey/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Onekey-Project/Onekey" />
 </a>
 
 ## 交流群
