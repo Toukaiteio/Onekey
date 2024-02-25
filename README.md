@@ -30,15 +30,10 @@ ikun0014+qq.com
 
 ## Star 趋势图
 
-[![Stargazers over time](https://starchart.cc/Onekey-Project/Onekey.svg)](https://starchart.cc/Onekey-Project/Onekey)
+[![Stargazers over time](https://starchart.cc/Toukaiteio/Onekey.svg)](https://starchart.cc/Toukaiteio/Onekey)
 
 ## 贡献者
 
-<a href="https://github.com/Onekey-Project/Onekey/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Onekey-Project/Onekey" />
-</a>
-
-## 维护
-<a href="https://github.com/Onekey-Project/Onekey/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Onekey-Project/Onekey" />
+<a href="https://github.com/Toukaiteio/Onekey/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Toukaiteio/Onekey" />
 </a>
