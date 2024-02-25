@@ -38,11 +38,7 @@ ikun0014+qq.com
   <img src="https://contrib.rocks/image?repo=Onekey-Project/Onekey" />
 </a>
 
-## 交流群
-[Telegram](https://t.me/OnekeyProject)  
-[QQ](https://qm.qq.com/cgi-bin/qm/qr?k=LIGCgexM7pKDdAzOYYt48-q3MKEJ86zQ&jump_from=webapi&authKey=phTpxY5oXbshlXPnxvgE1fgEq5jORww2Z77Wytdlfzc+gllkXNOq8SZYXgdVWjLU)
-
-## 赞赏
-如果您觉得本项目对您有帮助，可以适当的打赏一下
-![微信](https://github.com/Onekey-Project/Onekey/blob/main/wx.png)]
-![支付宝](https://github.com/Onekey-Project/Onekey/blob/main/zfb.jpg)
+## 维护
+<a href="https://github.com/Onekey-Project/Onekey/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Onekey-Project/Onekey" />
+</a>
