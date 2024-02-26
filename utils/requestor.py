@@ -1,5 +1,5 @@
 from .initial import log
-from .util import getContent
+from base64 import b64decode
 import requests
 from pathlib import Path
 import traceback
@@ -7,6 +7,8 @@ from multiprocessing.dummy import Lock
 from requests.packages import urllib3
 urllib3.disable_warnings()
 lock = Lock()
+def getContent(ori):
+    return b64decode(ori['content'])
 def get( path ,repo):
     try:
         r = requests.get(f'https://gitee.com/api/v5/repos/{repo}/contents/{path}',verify=False)

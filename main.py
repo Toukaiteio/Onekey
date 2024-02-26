@@ -42,7 +42,7 @@ def main(app_id):
         get_manifest(r['manifest'], get_steam_path(),repo, app_id)
         if isSteamTools:
             if r['type']=='luaScript':
-                stool_add([(app_id, 1, "None")]+[(r['gameid'][depot_id],1,f"{r['stage']}#{r['depotid'][depot_id]}#{r['stage']}") for depot_id in range(len(r['gameid']))]+[(depot_id, '1', 'None') for depot_id in r['dlc_list']])
+                stool_add([(app_id, 1, "None")]+[(r['gameid'][depot_id],1,f"{r['key'][depot_id]}#{r['depotid'][depot_id]}#{r['stage'][depot_id]}") for depot_id in range(len(r['gameid']))]+[(depot_id, '1', 'None') for depot_id in r['dlc_list']])
             elif r['type']=='SteamTools':
                 stool_add2(app_id,r['st_files'],repo)
         if isGreenLuma and r['type'] != 'SteamTools':

@@ -2,11 +2,11 @@ from .initial import steam_path
 from .requestor import download_st
 import subprocess
 import os
-from base64 import b64decode
+
 def stool_add2(appid,st_files,repo):
     writeTo=steam_path / "config" / "stplug-in"
     for i in range(len(st_files)):
-        with open(writeTo / f"{appid}_{i}.st","w",encoding="utf-8") as f:
+        with open(writeTo / f"{appid}_{i}.st","wb") as f:
             f.write(download_st(appid,st_files[i],repo))
 def stool_add(depot_list):
     lua_content = ""
@@ -55,5 +55,4 @@ def greenluma_add(depot_list):
                 f.write(str(depot_id))
             depot_dict[index] = int(depot_id)
     return True
-def getContent(ori):
-    return b64decode(ori['content'])
+
