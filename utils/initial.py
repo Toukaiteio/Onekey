@@ -54,3 +54,6 @@ def get_steam_path():
     key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\Valve\Steam')
     steam_path = Path(winreg.QueryValueEx(key, 'SteamPath')[0]) or customize_steam_path
     return steam_path
+steam_path=get_steam_path()
+isGreenLuma = (steam_path / 'AppList').is_dir()
+isSteamTools = (steam_path / 'config' / 'stplug-in').is_dir()

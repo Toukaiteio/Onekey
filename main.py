@@ -5,7 +5,6 @@ import os
 import argparse
 import requests
 import traceback
-import requests
 from requests.packages import urllib3
 from json import loads
 urllib3.disable_warnings()
@@ -18,6 +17,18 @@ print('\033[1;32;40m \_____/ |_|  \_| |_____| |_|  \_\ |_____|  /_/\033[0m')
 print('\033[1;32;40m作者ikun\033[0m')
 print('\033[1;32;40m当前版本 20240225S01 维护:Daiyosei\033[0m')
 print('\033[1;32;40m温馨提示：App ID可以在Steam商店页面或SteamDB找到\033[0m')
+if isGreenLuma:
+    print('\033[1;32;40m找到GreenLuma,GreenLuma模式已启用(提示:GreenLuma模式未经验证)\033[0m')
+else:
+    print('\033[1;31;40m未找到GreenLuma,GreenLuma模式已禁用\033[0m')
+if isSteamTools:
+    print('\033[1;32;40m找到SteamTools,SteamTools模式已启用\033[0m')
+else:
+    print('\033[1;31;40m未找到SteamTools, SteamTools模式已禁用\033[0m')
+if not (isGreenLuma or isSteamTools):
+    print('\033[1;31;40m请开启SteamTools或GreenLuma以继续使用\033[0m')
+    os.system('pause')
+    exit()
 def main(app_id):
     app_id_list = list(filter(str.isdecimal, app_id.strip().split('-')))
     app_id = app_id_list[0]
@@ -29,7 +40,13 @@ def main(app_id):
     r = loads(getContent(requests.get(url, headers=headers , verify=False).json()).decode('utf-8'))
     try:
         get_manifest(r['manifest'], get_steam_path(),repo, app_id)
-        stool_add([(app_id, 1, "None"),(r['gameid'],1,f"{r['stage']}#{r['depotid']}#{r['stage']}")]+[(depot_id, '1', 'None') for depot_id in r['dlc_list']])
+        if isSteamTools:
+            if r['type']=='luaScript':
+                stool_add([(app_id, 1, "None")]+[(r['gameid'][depot_id],1,f"{r['stage']}#{r['depotid'][depot_id]}#{r['stage']}") for depot_id in range(len(r['gameid']))]+[(depot_id, '1', 'None') for depot_id in r['dlc_list']])
+            elif r['type']=='SteamTools':
+                stool_add2(app_id,r['st_files'],repo)
+        if isGreenLuma and r['type'] != 'SteamTools':
+            greenluma_add([app_id]+[depot_id for depot_id in r['gameid']]+[depot_id for depot_id in r['dlc_list']])
         log.info(f'入库成功: {app_id} 游戏:{r["english"]}')
         log.info('重启steam生效')
         return True
