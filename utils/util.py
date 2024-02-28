@@ -2,13 +2,27 @@ from .initial import steam_path
 from .requestor import download_st
 import subprocess
 import os
-
-def stool_add2(appid,st_files,repo):
+def stoolUnlockDLC(depot_list):
+    lua_content = ""
+    appid=None
+    for depot_id in depot_list:
+        if not appid:
+            appid=depot_id
+        lua_content += f"""addappid({depot_id})"""
+    lua_filename = f"Onekey_unlockDLC_{appid}.lua"
+    lua_filepath = steam_path / "config" / "stplug-in" / lua_filename
+    with open(lua_filepath, "w", encoding="utf-8") as lua_file:
+        lua_file.write(lua_content)
+    luapacka_path = steam_path / "config" / "stplug-in" / "luapacka.exe"
+    subprocess.run([str(luapacka_path), str(lua_filepath)])
+    os.remove(lua_filepath)
+    return True
+def stoolAdd2(appid,st_files,repo):
     writeTo=steam_path / "config" / "stplug-in"
     for i in range(len(st_files)):
         with open(writeTo / f"{appid}_{i}.st","wb") as f:
             f.write(download_st(appid,st_files[i],repo))
-def stool_add(depot_list):
+def stoolAdd(depot_list):
     lua_content = ""
     appid=None
     for depot_id, type_, _orikey in depot_list:
@@ -29,7 +43,7 @@ def stool_add(depot_list):
     subprocess.run([str(luapacka_path), str(lua_filepath)])
     os.remove(lua_filepath)
     return True
-def greenluma_add(depot_list):
+def greenlumaAdd(depot_list):
     app_list_path = steam_path / 'AppList'
     if app_list_path.is_file():
         app_list_path.unlink(missing_ok=True)

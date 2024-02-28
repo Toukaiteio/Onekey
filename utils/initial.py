@@ -4,11 +4,12 @@ import logging
 import colorlog
 import yaml
 import os
+logging.captureWarnings(True)
 default = {
     'customize_steam_path': '',
     'customize_steam_path_example': '填写Steam路径，一般为自动获取,如：C:/Program Files(x86)/steam',
-    # 'is_share_key':True,
-    # 'is_share_key_example':'是否分享key',
+    'dlc_proxy':'',
+    'dlc_proxy_example':'使用解锁DLC功能时使用的代理',
 }
 def init_log():
     logger = logging.getLogger('Onekey')
