@@ -1,8 +1,3 @@
-<div align="center">
-[![GitHub License](https://img.shields.io/github/license/Toukaiteio/Onekey?style=for-the-badge)](https://github.com/Toukaiteio/Onekey/blob/main/LICENSE)
-
-</div>
-
 # Onekey
 Steam收费游戏体验(无法享受官方的任何在线权益)  
 
