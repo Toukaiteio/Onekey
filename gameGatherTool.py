@@ -13,7 +13,25 @@ if not (steam_path / "config" / "config.vdf").is_file():
     system("pause")
     exit()
 with open(steam_path / "config" / "config.vdf","r",encoding="utf-8") as f:
-    steamUserConfig=loads(f.read())['InstallConfigStore']['Software']['valve']['steam']['depots']
+    steamUserConfig=loads(f.read())['InstallConfigStore']
+try:
+    if steamUserConfig:
+        if 'Software' in steamUserConfig.keys(): steamUserConfig=steamUserConfig['Software']
+        else: steamUserConfig=steamUserConfig['software']
+        if 'Valve' in steamUserConfig.keys(): steamUserConfig=steamUserConfig['Valve']
+        else: steamUserConfig=steamUserConfig['valve']
+        if 'steam' in steamUserConfig.keys(): steamUserConfig=steamUserConfig['steam']
+        else: steamUserConfig=steamUserConfig['Steam']
+        if 'depots' in steamUserConfig: steamUserConfig=steamUserConfig['depots']
+        else: steamUserConfig=steamUserConfig['Depots']
+except KeyError:
+    print('Steam用户配置文件错误!')
+    system("pause")
+    exit()
+except:
+    print("程序出错!")
+    system("pause")
+    exit()
 def loadAppManifest(fp,givenIndex):
     _app=loads(fp.read())['AppState']
     finalMap[givenIndex]={}
