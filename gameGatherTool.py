@@ -102,12 +102,10 @@ for i,lib in enumerate(steamApps):
             except:
                 system("pause")
                 exit()
-# print(finalMap)
-# print(steamApps)
-# print(appMap)
-# print("如果你未找到你拥有的游戏，可能是由于你未下载该游戏，若你曾下载过，则可尝试按照 #APPID 的格式输入。")
-print("如果你未找到你拥有的游戏，可能是由于你未下载该游戏，")
-# print("如 #1203620 游戏的APP ID可在SteamDB查询")
+print("如果你未找到你拥有的游戏，可能是由于你未下载该游戏。")
+print("对于未下载的游戏，需要您提供steam通行凭证。")
+print("使用# + APPID来尝试获取未列出的游戏。 如 #1203620 。其中 APPID 可在SteamDB中获取。")
+print("之后您还需要给出DepotID，同样能够从steamDB获取")
 while(True):
     try:
         find=input("输入游戏前序号，提取游戏表单密钥:")

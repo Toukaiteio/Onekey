@@ -37,7 +37,11 @@ def unlockGame(app_id):
     headers = {'Authorization': ''}
     url = f'https://gitee.com/api/v5/repos/{repo}/contents/{app_id}/key.json'
     try:
-        r = loads(getContent(requests.get(url, headers=headers , verify=False).json()).decode('utf-8'))
+        __r=requests.get(url, headers=headers , verify=False).json()
+        # print(__r,type(__r)==type([1]),'content' not in __r.keys())
+        if type(__r)==type([1]) or 'content' not in __r.keys():
+            raise
+        r = loads(getContent(__r).decode('utf-8'))
         get_manifest(r['manifest'], get_steam_path(),repo, app_id)
         if isSteamTools:
             if r['type']=='luaScript':
@@ -54,7 +58,10 @@ def unlockGame(app_id):
     except requests.exceptions.RequestException as e:
         log.error(f"An error occurred: {e}")
         log.info('请检查网络连接，或也可能是您入库过于频繁导致的。')
-    log.error(f'入库失败: {app_id}，清单库中可能暂未收录该游戏')
+    except:
+        # traceback.print_exc()
+        log.error(f'入库失败: {app_id}，清单库中可能暂未收录该游戏')
+        return False
     return False
 def unlockDLC(app_id):
     app_id_list = list(filter(str.isdecimal, app_id.strip().split('-')))
@@ -71,8 +78,14 @@ def unlockDLC(app_id):
             log.error("App ID 并不指向一个 游戏！")
             raise
         else:
-            dlcList=[app_id]+list(r['data']['dlc'])
-            if(len(dlcList)==1):
+            dlcList=[]
+            try:
+                dlcList+=list(r['data']['dlc'])
+            except KeyError:
+                pass
+            except:
+                raise
+            if(len(dlcList)==0):
                 log.info("未找到该游戏DLC")
                 raise
             if stoolUnlockDLC(dlcList):

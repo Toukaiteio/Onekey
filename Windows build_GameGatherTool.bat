@@ -1,2 +1,2 @@
-nuitka --onefile --lto=no --report=report2.xml --mingw64 --show-progress --show-memory --company-name=Daiyosei --product-name=Onekey --file-version=12.8.0 --product-version=12.8.0 --output-dir=output --windows-icon-from-ico=favicon.ico gameGatherTool.py
+nuitka --onefile --lto=no --report=report2.xml --mingw64 --show-progress --show-memory --company-name=Daiyosei --product-name=Onekey --file-version=20240225S01 --product-version=20240225S01 --output-dir=output --windows-icon-from-ico=favicon.ico gameGatherTool.py
 pause
